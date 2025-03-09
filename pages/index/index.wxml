@@ -1,0 +1,5 @@
+<!-- pages/index/index.wxml -->
+<view class="container">
+  <text>{{welcomeMsg}}</text>
+  <button bindtap="goChatAI">进入 AI 对话</button>
+</view>

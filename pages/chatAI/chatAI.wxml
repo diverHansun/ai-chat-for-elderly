@@ -1,0 +1,25 @@
+<!-- pages/chatAI/chatAI.wxml -->
+<view class="container">
+  <!-- 聊天消息区域 -->
+  <view class="chat-container">
+    <block wx:for="{{chatHistory}}" wx:key="index">
+      <view 
+        class="chat-item {{item.userType === 'user' ? 'user' : 'ai'}}"
+      >{{item.content}}</view>
+    </block>
+  </view>
+
+  <!-- 底部输入区域 -->
+  <view class="input-container">
+    <input
+      class="text-input"
+      bindinput="handleInput"
+      value="{{inputValue}}"
+      placeholder="跟AI聊点啥..."
+    />
+    <button
+      class="send-btn"
+      bindtap="sendMessage"
+    >发送</button>
+  </view>
+</view>

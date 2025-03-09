@@ -1,0 +1,63 @@
+/* chatAI.wxss */
+
+/* 最外层容器 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;      /* 让页面高度自适应 */
+  background-color: #ffffff;
+}
+
+/* 聊天内容区域 */
+.chat-container {
+  flex: 1;           /* 撑开容器 */
+  padding: 10px;
+  overflow-y: auto;  /* 允许上下滚动 */
+}
+
+/* 每条消息条目 */
+.chat-item {
+  margin-bottom: 6px;
+  padding: 10px;
+  border-radius: 4px;
+  color: #333;       /* 文本颜色 */
+  word-wrap: break-word; /* 允许自动换行 */
+}
+
+/* 用户的消息样式 */
+.chat-item.user {
+  background-color: #d1f5d3;
+  text-align: right;
+}
+
+/* AI的消息样式 */
+.chat-item.ai {
+  background-color: #f5f5f5;
+  text-align: left;
+}
+
+/* 底部输入区域 */
+.input-container {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #eee;
+}
+
+/* 输入框 */
+.input-container .text-input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* 发送按钮 */
+.input-container .send-btn {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: none;
+  background-color: #007aff;
+  color: #fff;
+  font-size: 14px;
+}

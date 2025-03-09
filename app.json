@@ -1,0 +1,11 @@
+{
+  "pages": [
+    "pages/index/index",     
+    "pages/chatAI/chatAI"    
+  ],
+  "window": {
+    "navigationBarTitleText": "智障AI聊天助手",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black"
+  }
+}
