@@ -1,63 +1,88 @@
-/* chatAI.wxss */
-
-/* 最外层容器 */
-.container {
+/* 整体聊天容器 */
+.chat-container {
   display: flex;
   flex-direction: column;
-  height: 100%;      /* 让页面高度自适应 */
-  background-color: #ffffff;
-}
-
-/* 聊天内容区域 */
-.chat-container {
-  flex: 1;           /* 撑开容器 */
   padding: 10px;
-  overflow-y: auto;  /* 允许上下滚动 */
+  /* 预留底部空间，避免消息被输入框遮住 */
+  padding-bottom: 80px;
 }
 
-/* 每条消息条目 */
-.chat-item {
-  margin-bottom: 6px;
-  padding: 10px;
-  border-radius: 4px;
-  color: #333;       /* 文本颜色 */
-  word-wrap: break-word; /* 允许自动换行 */
-}
-
-/* 用户的消息样式 */
-.chat-item.user {
-  background-color: #d1f5d3;
-  text-align: right;
-}
-
-/* AI的消息样式 */
-.chat-item.ai {
-  background-color: #f5f5f5;
-  text-align: left;
-}
-
-/* 底部输入区域 */
-.input-container {
+/* 单条消息容器 */
+.message {
   display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+/* 用户消息：右侧对齐 */
+.message.user {
+  justify-content: flex-end;
+}
+
+/* AI 消息：左侧对齐（可不写，默认居左） */
+.message.ai {
+  justify-content: flex-start;
+}
+
+/* 头像样式 */
+.message .avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px; /* AI: 头像在左，文本在右 */
+}
+
+/* 覆盖用户头像的间距，使头像在最右侧 */
+.message.user .avatar {
+  margin-right: 0;     /* 取消默认右边距 */
+  margin-left: 10px;   /* 在文本和头像之间留空 */
+}
+
+/* 消息文本样式 */
+.message .text {
+  max-width: 70%;
   padding: 10px;
-  border-top: 1px solid #eee;
+  border-radius: 10px;
+  word-wrap: break-word; /* 避免文本超出 */
 }
 
-/* 输入框 */
-.input-container .text-input {
+/* 用户消息背景色 */
+.message.user .text {
+  background-color: #e0f7fa;
+}
+
+/* AI 消息背景色 */
+.message.ai .text {
+  background-color: #fff3e0;
+}
+
+/* 输入区域固定在底部 */
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  position: fixed;  /* 关键：固定定位 */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+}
+
+/* 输入框样式 */
+.input-area input {
   flex: 1;
-  margin-right: 10px;
-  padding: 6px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
 
-/* 发送按钮 */
-.input-container .send-btn {
-  padding: 6px 12px;
-  border-radius: 4px;
-  border: none;
-  background-color: #007aff;
+/* 发送按钮样式 */
+.input-area button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #0084ff;
   color: #fff;
-  font-size: 14px;
+  border: none;
+  border-radius: 5px;
 }

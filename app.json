@@ -4,7 +4,7 @@
     "pages/chatAI/chatAI"    
   ],
   "window": {
-    "navigationBarTitleText": "智障AI聊天助手",
+    "navigationBarTitleText": "智能AI聊天助手",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black"
   }

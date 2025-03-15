@@ -1,46 +1,54 @@
-// pages/chatAI/chatAI.js
+// chatAI.js
 Page({
   data: {
-    inputValue: '',      // 存储输入框内容
-    chatHistory: []      // 聊天记录
+    inputValue: "",
+    chatHistory: []
   },
-
-  onLoad(options) {
-    // 页面加载时，可执行初始化操作
-    console.log("chatAI onLoad");
+  onLoad() {
+    wx.cloud.init();
   },
-
-  // 输入框事件：实时更新 inputValue
   handleInput(e) {
     this.setData({
       inputValue: e.detail.value
     });
   },
-
-  // 发送消息
   sendMessage() {
     const message = this.data.inputValue.trim();
-    if (!message) return; // 输入为空则不发送
+    if (!message) return;
 
-    // 1. 将用户消息添加到 chatHistory，并清空输入框
+    const userAvatar = "/pages/chatAI/images/user.png";
+    const aiAvatar = "/pages/chatAI/images/ai.png";
+
+    // 1. 先把用户的输入 push 到 chatHistory
     const newHistory = this.data.chatHistory.concat([
-      { userType: 'user', content: message }
+      { userType: "user", content: message, avatar: userAvatar }
     ]);
     this.setData({
       chatHistory: newHistory,
-      inputValue: ''
+      inputValue: ""
     });
 
-    // 2. 模拟 AI 回复
-    //   实际开发中，可通过 wx.request 调用后端API或第三方接口
-    const aiReply = "AI 回复: " + message;
-
-    // 3. 将 AI 回复添加到 chatHistory
-    setTimeout(() => {
-      const updatedHistory = this.data.chatHistory.concat([
-        { userType: 'ai', content: aiReply }
-      ]);
-      this.setData({ chatHistory: updatedHistory });
-    }, 500); 
+    // 2. 调用云函数
+    wx.cloud.callFunction({
+      name: "chatAI",
+      data: { message },
+      success: (res) => {
+        console.log("云函数返回:", res);
+        if (res.result && res.result.code === 200) {
+          // 3. AI 返回的是 HTML
+          const aiReplyHtml = res.result.data;
+          // 4. 放到 chatHistory
+          const updatedHistory = this.data.chatHistory.concat([
+            { userType: "ai", content: aiReplyHtml, avatar: aiAvatar }
+          ]);
+          this.setData({ chatHistory: updatedHistory });
+        } else {
+          console.error("云函数返回错误:", res.result);
+        }
+      },
+      fail: (err) => {
+        console.error("调用云函数失败:", err);
+      }
+    });
   }
 });

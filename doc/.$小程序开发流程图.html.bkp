@@ -1,0 +1,138 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="第 1 页" id="AJ0sFYh5T1oXqo0oYBel">
+    <mxGraphModel dx="1436" dy="968" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-1" value="需求调研与分析" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="210" y="20" width="172" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-2" value="撰写需求文档及大创申报书说明" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="166" y="124" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-3" value="UI/UX设计与原型制作" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="189" y="252" width="215" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-4" value="系统整体架构设计" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="202" y="356" width="188" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-5" value="前后端技术选型" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="210" y="460" width="172" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-6" value="前端开发：微信小程序原生（WXML、WXSS、JS）" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="20" y="692" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-7" value="后端开发：选择 Flask 或 SpringBoot" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="312" y="564" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-8" value="页面与交互逻辑开发" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="48" y="820" width="204" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-9" value="接口设计 &amp; 数据库设计" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="330" y="704" width="225" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-10" value="后端接口开发与单元测试" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="324" y="820" width="236" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-11" value="前后端接口联调" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="210" y="924" width="172" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-12" value="集成测试与BUG修复" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="195" y="1028" width="202" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-13" value="代码优化与安全加固" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="194" y="1132" width="204" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-14" value="部署上线（服务器、微信小程序审核）" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="166" y="1236" width="260" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-15" value="后续维护与功能迭代" style="whiteSpace=wrap;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="194" y="1364" width="204" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-16" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-1" target="EDaYAdfgQxhXfrFsE7TL-2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-17" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-2" target="EDaYAdfgQxhXfrFsE7TL-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-18" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-3" target="EDaYAdfgQxhXfrFsE7TL-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-19" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-4" target="EDaYAdfgQxhXfrFsE7TL-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-20" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.06;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-5" target="EDaYAdfgQxhXfrFsE7TL-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="539" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-21" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.94;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-5" target="EDaYAdfgQxhXfrFsE7TL-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="442" y="539" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-22" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-6" target="EDaYAdfgQxhXfrFsE7TL-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-23" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-7" target="EDaYAdfgQxhXfrFsE7TL-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-24" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-9" target="EDaYAdfgQxhXfrFsE7TL-10">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-25" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.06;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-8" target="EDaYAdfgQxhXfrFsE7TL-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="150" y="899" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-26" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.94;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-10" target="EDaYAdfgQxhXfrFsE7TL-11">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="442" y="899" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-27" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-11" target="EDaYAdfgQxhXfrFsE7TL-12">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-28" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-12" target="EDaYAdfgQxhXfrFsE7TL-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-29" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-13" target="EDaYAdfgQxhXfrFsE7TL-14">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="EDaYAdfgQxhXfrFsE7TL-30" value="" style="curved=1;startArrow=none;endArrow=block;exitX=0.5;exitY=1;entryX=0.5;entryY=0;rounded=0;" edge="1" parent="1" source="EDaYAdfgQxhXfrFsE7TL-14" target="EDaYAdfgQxhXfrFsE7TL-15">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

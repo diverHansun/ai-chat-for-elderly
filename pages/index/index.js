@@ -75,7 +75,7 @@ Page({
   /**
    * 自定义方法：跳转到 chatAI 页面
    */
-  goChatAI() {
+  goToChat() {
     wx.navigateTo({
       url: '/pages/chatAI/chatAI',
       success: (res) => {
