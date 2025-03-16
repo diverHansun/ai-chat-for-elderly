@@ -50,7 +50,7 @@ AI chat for the elderly/       # 小程序根目录
 ├── images/                   # 图片资源（如图标、背景等）
 ├── cloudfunctions/chatAI/    # 微信云函数（AI 互动逻辑）
 ├── server/                   # 服务器端代码（待开发）
-├── train/                    # 训练数据（待开发）
+├── train/                    # chatAI训练数据（待开发）
 └── doc/                      # 文档相关
 ```
 
@@ -117,10 +117,8 @@ AI chat for the elderly/       # 小程序根目录
 欢迎贡献代码和建议！
 1. Fork 本项目
 2. 创建新分支 `feature/xxx`
-3. 提交代码并发起 Pull Request
+3. 讨论并审核后提交代码并发起 Pull Request
 
-## 许可协议
-本项目遵循 MIT 许可证，详细内容请查看 `LICENSE` 文件。
 
 ---
 
