@@ -1,88 +1,100 @@
-/* 整体聊天容器 */
+/* 聊天容器：预留输入框高度 */
 .chat-container {
-  display: flex;
-  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 50px); /* 输入框高度 */
   padding: 10px;
-  /* 预留底部空间，避免消息被输入框遮住 */
-  padding-bottom: 80px;
+  background-color: #f5f5f5;
+  box-sizing: border-box;
+  overflow-y: scroll;
 }
 
-/* 单条消息容器 */
-.message {
+/* 每条消息项：采用 Flex 布局实现头像与消息内容排列 */
+.message-item {
   display: flex;
-  align-items: center;
-  margin: 10px 0;
+  align-items: flex-start;
+  margin-bottom: 10px;
 }
 
-/* 用户消息：右侧对齐 */
-.message.user {
-  justify-content: flex-end;
-}
-
-/* AI 消息：左侧对齐（可不写，默认居左） */
-.message.ai {
-  justify-content: flex-start;
+/* 用户消息：头像在右侧，消息内容右对齐 */
+.user-message {
+  flex-direction: row-reverse;
 }
 
 /* 头像样式 */
-.message .avatar {
+.avatar {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  margin-right: 10px; /* AI: 头像在左，文本在右 */
+  margin: 0 10px;
 }
 
-/* 覆盖用户头像的间距，使头像在最右侧 */
-.message.user .avatar {
-  margin-right: 0;     /* 取消默认右边距 */
-  margin-left: 10px;   /* 在文本和头像之间留空 */
-}
-
-/* 消息文本样式 */
-.message .text {
+/* 消息内容区域 */
+.message-content {
   max-width: 70%;
-  padding: 10px;
-  border-radius: 10px;
-  word-wrap: break-word; /* 避免文本超出 */
+  padding: 8px 12px;
+  border-radius: 15px;
+  font-size: 15px;
+  line-height: 2.0;
+  word-wrap: break-word;
 }
 
-/* 用户消息背景色 */
-.message.user .text {
-  background-color: #e0f7fa;
+/* 用户消息气泡：蓝底白字 */
+.user-message .message-content {
+  background-color: #0084ff;
+  color: #fff;
 }
 
-/* AI 消息背景色 */
-.message.ai .text {
-  background-color: #fff3e0;
+/* AI 消息气泡：灰底黑字 */
+.ai-message .message-content {
+  background-color: #f7d9a1;
+  color: #000;
 }
 
-/* 输入区域固定在底部 */
-.input-area {
+/* rich-text 内部样式（如有需要可调整） */
+rich-text {
+  display: block;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* 输入区域：固定在页面底部 */
+.input-container {
   display: flex;
   align-items: center;
-  padding: 10px;
+  justify-content: space-between;
+  padding: 5px 10px;
   border-top: 1px solid #ddd;
-  position: fixed;  /* 关键：固定定位 */
-  bottom: 0;
-  left: 0;
-  right: 0;
   background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* 输入框样式 */
-.input-area input {
-  flex: 1;
-  padding: 10px;
-  border: 1px solid #ddd;
+.input-box {
+  flex: 1;/*表示该元素可以扩展填充剩余的空间，使输入框自动占据除了发送按钮之外的全部可用空间*/
+  height: 50px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 17px;
+  color: #333;
 }
 
 /* 发送按钮样式 */
-.input-area button {
-  padding: 10px 20px;
-  margin-left: 10px;
+/* 发送按钮样式 */
+button {
+  margin-left: 15px;
+  padding: 0 15px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: #0084ff;
   color: #fff;
   border: none;
   border-radius: 5px;
+  font-size: 17px;
 }
+

@@ -1,0 +1,23 @@
+<view class="chat-container">
+  <block wx:for="{{chatHistory}}" wx:key="index">
+    <!-- 用户消息：右侧 -->
+    <view class="message user" wx:if="{{item.userType === 'user'}}">
+      <!-- 用户先显示文本，再显示头像 -->
+      <text class="text">{{item.content}}</text>
+      <image class="avatar" src="{{item.avatar}}"></image>
+    </view>
+
+    <!-- AI 消息：左侧 -->
+    <view class="message ai" wx:if="{{item.userType === 'ai'}}">
+      <image class="avatar" src="{{item.avatar}}"></image>
+      <!-- AI 返回的 HTML 用 rich-text 渲染 -->
+      <rich-text class="text" nodes="{{item.content}}"></rich-text>
+    </view>
+  </block>
+</view>
+
+<!-- 底部输入区域 -->
+<view class="input-area">
+  <input bindinput="handleInput" value="{{inputValue}}" placeholder="想和AI聊些什么..." />
+  <button bindtap="sendMessage">发送</button>
+</view>
