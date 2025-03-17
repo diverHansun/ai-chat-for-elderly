@@ -9,7 +9,7 @@
     <view class="card-title">欢迎体验</view>
     <!-- 卡片描述 -->
     <view class="card-desc">
-      探索人工智能对话的无限可能，体验便捷智能助手带来的全新服务！
+      探索人工智能对话的无限可能，体验便捷健康助手带来的全新服务！
     </view>
     <!-- 进入 AI 对话按钮 -->
     <button class="primary-btn" bindtap="goToChat" style="position: relative; left: 0rpx; top: 2rpx">进入 AI 对话</button>

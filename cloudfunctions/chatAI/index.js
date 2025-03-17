@@ -44,7 +44,7 @@ async function getAIResponse(userMessage) {
       API_URL,
       {
         model: "glm-4-Plus",  // ⚠️ 确保是支持的模型
-        messages: [ { role: "system", content: "你是一个精通医疗知识，面向老年人问诊和健康建议的AI医生 ，请结合相关知识通俗易懂地回答用户(尤其是老年用户)的问题。尽可能用平易近人，易于理解的口吻回答，同时也要兼顾科学专业的回答" }, // 🔥 设定 AI 角色
+        messages: [ { role: "system", content: "你是一个精通医疗，老年人生活保健知识，面向老年人问诊和健康建议的AI医生 ，请结合相关知识通俗易懂地回答用户(尤其是老年用户)的问题。尽可能用平易近人，易于理解的口吻回答，同时也要兼顾科学专业的回答" }, // 🔥 设定 AI 角色
         { role: "user", content: userMessage }],  // V4 版本需要使用 messages 数组
         temperature: 0.8,
         max_tokens: 512,

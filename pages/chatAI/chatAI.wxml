@@ -1,10 +1,30 @@
+<!-- 欢迎卡片区 -->
+<view wx:if="{{showWelcomeCards}}" class="welcome-section">
+  <!-- AI 助手介绍卡片 -->
+  <view class="assistant-card">
+    <image class="assistant-icon" src="/pages/chatAI/images/ai.png" mode="aspectFill" />
+    <view class="assistant-text">
+      您好，我是您的健康AI助手。您可以向我咨询关于健康、饮食、用药和情感等各方面的问题，比如：
+    </view>
+  </view>
+</view>
+<!-- 示例问题卡片列表 -->
+<block wx:for="{{exampleQuestions}}" wx:key="index">
+  <view class="question-card" hover-class="question-card-active" bindtap="handleCardTap" data-question="{{item}}">
+    问：{{item}}
+  </view>
+</block>
+
+<!-- 聊天内容区域 -->
 <scroll-view 
   class="chat-container" 
   scroll-y="true" 
   scroll-with-animation="true" 
   scroll-into-view="{{toView}}">
-  
+   <!-- 这里是聊天记录渲染 -->
   <block wx:for="{{chatHistory}}" wx:key="index">
+
+
     <view class="message-item {{item.userType == 'user' ? 'user-message' : 'ai-message'}}" id="msg{{index}}">
       <!-- 头像 -->
       <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
@@ -19,8 +39,12 @@
           <rich-text nodes="{{item.content}}"></rich-text>
         </block>
       </view>
+      
     </view>
   </block>
+
+ <!--回答等待提示  -->
+  <view wx:if="{{loading}}" class="loading-text">正在生成回答.......</view>
   
   <!-- 滚动锚点备用 -->
   <view id="bottom"></view>
