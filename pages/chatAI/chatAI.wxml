@@ -8,6 +8,7 @@
     </view>
   </view>
 </view>
+
 <!-- 示例问题卡片列表 -->
 <block wx:for="{{exampleQuestions}}" wx:key="index">
   <view class="question-card" hover-class="question-card-active" bindtap="handleCardTap" data-question="{{item}}">
@@ -21,10 +22,8 @@
   scroll-y="true" 
   scroll-with-animation="true" 
   scroll-into-view="{{toView}}">
-   <!-- 这里是聊天记录渲染 -->
+  <!-- 这里是聊天记录渲染 -->
   <block wx:for="{{chatHistory}}" wx:key="index">
-
-
     <view class="message-item {{item.userType == 'user' ? 'user-message' : 'ai-message'}}" id="msg{{index}}">
       <!-- 头像 -->
       <image class="avatar" src="{{item.avatar}}" mode="aspectFill" />
@@ -39,22 +38,30 @@
           <rich-text nodes="{{item.content}}"></rich-text>
         </block>
       </view>
-      
     </view>
   </block>
 
- <!--回答等待提示  -->
+  <!-- 回答等待提示 -->
   <view wx:if="{{loading}}" class="loading-text">正在生成回答.......</view>
   
   <!-- 滚动锚点备用 -->
   <view id="bottom"></view>
 </scroll-view>
 
-<view class="input-container">
-  <input 
-    class="input-box" 
-    bindinput="handleInput" 
-    value="{{inputValue}}" 
-    placeholder="想和健康助手聊些什么..." />
-  <button bindtap="sendMessage">发送</button>
+<!-- 底部统一区域：文本输入和语音按钮 -->
+<view class="footer">
+  <view class="input-container">
+    <input 
+      class="input-box" 
+      bindinput="handleInput" 
+      value="{{inputValue}}" 
+      placeholder="想和健康助手聊些什么..." />
+    <button bindtap="sendMessage">发送</button>
+  </view>
+  <view class="voice-area">
+    <!-- 长按录音区域：按下时开始录音，松手时结束录音 -->
+    <button bindtouchstart="startRecording" bindtouchend="stopRecording">
+      长按录音
+    </button>
+  </view>
 </view>

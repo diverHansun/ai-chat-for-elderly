@@ -1,7 +1,7 @@
 /* 欢迎区整体 */
 .welcome-section {
   padding: 10px;
-  background-color: #f8fa78;
+  background-color: #f5f7a1;
 }
 
 /* AI 助手介绍卡片 */
@@ -53,6 +53,7 @@
   width: 100%;
   height: calc(100vh - 50px); /* 输入框高度 */
   padding: 10px;
+  padding-bottom: 100px;
   background-color: #F7F1E9;
   box-sizing: border-box;
   overflow-y: scroll;
@@ -86,7 +87,7 @@
   font-size: 15px;
   line-height: 2.0;
   word-wrap: break-word;
-  margin-bottom: px; /* 调整此处的值来改变上下间距 */
+  margin-bottom: 5px; /* 调整此处的值来改变上下间距 */
 }
 
 /* 用户消息气泡*/
@@ -108,7 +109,21 @@ rich-text {
   line-height: 1.7;
 }
 
-/* 输入区域：固定在页面底部 */
+
+.footer { 
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 输入区域：移除固定定位 */
 .input-container {
   display: flex;
   align-items: center;
@@ -116,15 +131,12 @@ rich-text {
   padding: 5px 10px;
   border-top: 1px solid #E0DAD3;
   background-color: #FFF8F2;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
   box-sizing: border-box;
 }
 
-/* 输入框样式 */
+/* 输入框样式保持不变 */
 .input-box {
-  flex: 1;/*表示该元素可以扩展填充剩余的空间，使输入框自动占据除了发送按钮之外的全部可用空间*/
+  flex: 1;
   height: 50px;
   padding: 0 10px;
   border: 1px solid #ccc;
@@ -134,7 +146,7 @@ rich-text {
 }
 
 /* 发送按钮样式 */
-button {
+.input-container button {
   margin-left: 15px;
   padding: 0 15px;
   height: 50px;
@@ -147,17 +159,33 @@ button {
   border-radius: 5px;
   font-size: 17px;
 }
-/* 按钮按下状态 */
-button:active {
+
+/* 发送按钮按下状态 */
+.input-container button:active {
   background-color: #f3d632;
 }
 
-/*正在生成中*/
+/* 语音录制区域：设置 margin-top 保持间隔 */
+.voice-area {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.voice-area button {
+  background-color: #FF9F1C;
+  border: 1px solid #f5f5f5;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: rgb(247, 247, 247);
+}
+
+/* 正在生成中 */
 .loading-text {
   text-align: left;
   font-size: 16px;
   color: rgb(92, 91, 91);
   margin-top: 15px;
- 
 }
+
 
