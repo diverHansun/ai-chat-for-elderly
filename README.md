@@ -32,20 +32,21 @@ AI chat for the elderly/       # 小程序根目录
 │   │   ├── community.wxss
 │   │   ├── community.js
 │   │   ├── community.json
-│   ├── health/               # 健康推荐页面
-│   │   ├── health.wxml
-│   │   ├── health.wxss
-│   │   ├── health.js
-│   │   ├── health.json
-│   ├── exercise/             # 运动提醒页面
-│   │   ├── exercise.wxml
-│   │   ├── exercise.wxss
-│   │   ├── exercise.js
-│   │   ├── exercise.json
+│   ├── health_life/         # 健康生活页面（合并健康推荐和运动提醒）
+│   │   ├── health_life.wxml
+│   │   ├── health_life.wxss
+│   │   ├── health_life.js
+│   │   ├── health_life.json
+│   ├── nearby/              # 附近场所查询页面
+│   │   ├── nearby.wxml
+│   │   ├── nearby.wxss
+│   │   ├── nearby.js
+│   │   ├── nearby.json
 │
 ├── utils/                    # 工具函数或公用模块
 │   ├── request.js            # 封装 wx.request，统一接口调用
 │   ├── constants.js          # 定义常量、枚举等
+│   ├── exampleQuestions.js   # 
 │
 ├── images/                   # 图片资源（如图标、背景等）
 ├── cloudfunctions/chatAI/    # 微信云函数（AI 互动逻辑）
@@ -76,11 +77,13 @@ AI chat for the elderly/       # 小程序根目录
 - 老年人可浏览社区信息
 
 ### 3. 健康推荐（待开发）
-- 结合天气、季节推荐养生菜谱
+- 统一健康相关功能，包括健康推荐（饮食建议）+ 运动提醒（步数追踪）
 - 根据微信步数提供运动建议
 
 ### 4. 附近场所查询（待开发）
 - 提供老年人常用场所（医院、药店、公园等）信息
+- 允许用户查询 3000m 内的公园、学校、菜市场等。
+- 结合百度/高德地图 API，提供导航路线。
 
 ## 部署与运行
 ### 1. 运行前端小程序
