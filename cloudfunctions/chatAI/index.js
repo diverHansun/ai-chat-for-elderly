@@ -8,13 +8,15 @@ exports.main = async (event, context) => {
   console.log("收到请求:", event);
 
   try {
+    const { message, history = [] } = event;  // ✅ 新增 history 支持
 
-  // 如果传入音频文件，则走语音处理流程
+   // 如果传入音频文件，则走语音处理流程
    if (event.audioFile) {
     return await processAudio(event.audioFile);
    }
+   
 
-    const { message } = event;
+   
     if (!message) {
       console.error("错误: 消息不能为空");
       return { code: 400, message: "消息不能为空" };
@@ -23,7 +25,7 @@ exports.main = async (event, context) => {
     console.log("用户输入:", message);
 
     // 调用 AI 接口
-    const aiResponse = await getAIResponse(message);
+    const aiResponse = await getAIResponse(message,history);
 
     console.log("AI 回复(原文Markdown):", aiResponse);
 
@@ -44,17 +46,27 @@ exports.main = async (event, context) => {
 };
 
 // 发送请求到智谱 AI
-async function getAIResponse(userMessage) {
-  const API_KEY = "77d92def89524349897858bf12f550f1.akrFZdjzdtXzkJvo"; // ⚠️ 请替换成你的 API Key
-  const API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"; // 确保是最新的 API 地址
+
+async function getAIResponse(userMessage, conversationHistory = []) {
+  const API_KEY = "77d92def89524349897858bf12f550f1.akrFZdjzdtXzkJvo"; // 请替换成你的 API Key
+  const API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions"; // 最新的 API 地址
+
+  // 如果没有历史对话，则先添加默认系统消息
+  if (conversationHistory.length === 0) {
+    conversationHistory.push({
+      role: "system",
+      content: "你是一个精通医疗，老年人生活保健知识，面向老年人问诊和健康建议的AI医生，请结合相关知识通俗易懂地回答用户（尤其是老年用户）的问题。尽可能用平易近人、易于理解的口吻回答，同时也要兼顾科学专业的回答。"
+    });
+  }
+  // 将当前用户消息加入历史
+  conversationHistory.push({ role: "user", content: userMessage });
 
   try {
     const response = await axios.post(
       API_URL,
       {
-        model: "glm-4-Plus",  // ⚠️ 确保是支持的模型
-        messages: [ { role: "system", content: "你是一个精通医疗，老年人生活保健知识，面向老年人问诊和健康建议的AI医生 ，请结合相关知识通俗易懂地回答用户(尤其是老年用户)的问题。尽可能用平易近人，易于理解的口吻回答，同时也要兼顾科学专业的回答" }, // 🔥 设定 AI 角色
-        { role: "user", content: userMessage }],  // V4 版本需要使用 messages 数组
+        model: "glm-4-Plus", // 确保是支持的模型
+        messages: conversationHistory, // 传入完整的对话历史
         temperature: 0.8,
         max_tokens: 512,
         top_p: 0.9
@@ -83,6 +95,7 @@ async function getAIResponse(userMessage) {
 };
 
 
+
 // 新增：处理语音文件，将语音转为文本后再调用 AI 接口
 // 使用 GLM-4-Voice 接口直接处理语音
 let previousAudioId = null; // 临时缓存上一次 AI 的 audio.id，可替换为持久化方案（如数据库）
@@ -106,7 +119,7 @@ async function processAudio(audioFileID, previousAudioIdFromClient) {
     const messages = [
       {
         role: "system",
-        content: "你是一个精通医疗、老年人生活保健知识的AI医生，擅长为老年用户提供通俗易懂的健康建议和问诊答复。请尽可能用平易近人、易于理解的口吻，同时兼顾科学和专业性。"
+        content: "你是一个精通医疗、老年人生活保健知识的AI医生，擅长为老年用户提供通俗易懂的健康建议和问诊答复。请用平易近人、易于理解的口吻，同时兼顾科学和专业性。"
       }
     ];
 

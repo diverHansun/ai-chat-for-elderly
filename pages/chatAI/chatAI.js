@@ -58,46 +58,53 @@ Page({
   sendMessage() {
     const message = this.data.inputValue.trim();
     if (!message) return;
-    
-    // 如果还在显示欢迎卡片，发送消息后隐藏它
+  
     if (this.data.showWelcomeCards) {
       this.setData({ showWelcomeCards: false });
     }
     if (this.data.exampleQuestions) {
       this.setData({ exampleQuestions: false });
     }
+  
     const userAvatar = "/pages/chatAI/images/user.png";
     const aiAvatar = "/pages/chatAI/images/ai.png";
-
-    // 1. 用户消息入队
+  
+    // 用户发言加入历史
     const newHistory = this.data.chatHistory.concat([
       { userType: "user", content: message, avatar: userAvatar }
     ]);
     this.setData({
       chatHistory: newHistory,
       inputValue: "",
-      toView: "msg" + (newHistory.length - 1), // 滚动到最新用户消息
+      toView: "msg" + (newHistory.length - 1),
       loading: true
     });
-
-
   
-    // 2. 调用云函数获取 AI文字回复
+    // 🔁 构建多轮对话上下文
+    const historyMessages = this.data.chatHistory.map(item => ({
+      role: item.userType === "user" ? "user" : "assistant",
+      content: item.content
+    }));
+    historyMessages.push({ role: "user", content: message });
+  
+    // 云函数调用，传入 message 和完整上下文
     wx.cloud.callFunction({
       name: "chatAI",
-      data: { message },
+      data: {
+        message,
+        history: historyMessages
+      },
       success: (res) => {
         console.log("云函数返回:", res);
         if (res.result && res.result.code === 200) {
-          // 3. AI 返回 HTML 内容
           const aiReplyHtml = res.result.data;
           const updatedHistory = this.data.chatHistory.concat([
             { userType: "ai", content: aiReplyHtml, avatar: aiAvatar }
           ]);
           this.setData({
             chatHistory: updatedHistory,
-            toView: "msg" + (updatedHistory.length - 1), // 滚动到最新 AI 消息
-            loading: false // 隐藏“正在生成中...”
+            toView: "msg" + (updatedHistory.length - 1),
+            loading: false
           });
         } else {
           console.error("云函数返回错误:", res.result);
@@ -110,6 +117,7 @@ Page({
       }
     });
   },
+  
 
   // 新增：开始录音（优化：增加异常捕获）
   startRecording() {
@@ -122,7 +130,7 @@ Page({
       this.setData({ recording: true });
       recorderManager.start({
         format: "mp3",
-        duration: 10000 // 最长10秒
+        duration: 20000 // 最长10秒
       });
       console.log("录音开始");
     } catch (error) {
