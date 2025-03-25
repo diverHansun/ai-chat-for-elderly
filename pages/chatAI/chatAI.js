@@ -16,6 +16,7 @@ Page({
     recording: false // 录音状态标识
   },
 
+
   onLoad() {
     wx.cloud.init();
     // 从外部引入的问题库中随机抽取4个问题
@@ -79,7 +80,9 @@ Page({
       loading: true
     });
 
-    // 2. 调用云函数获取 AI 回复
+
+  
+    // 2. 调用云函数获取 AI文字回复
     wx.cloud.callFunction({
       name: "chatAI",
       data: { message },
@@ -161,46 +164,97 @@ Page({
     });
   },
 
-  // 新增：调用云函数发送语音消息（优化：增加异常捕获）
-  sendVoiceMessage(fileID) {
-    const userAvatar = "/pages/chatAI/images/user.png";
-    const aiAvatar = "/pages/chatAI/images/ai.png";
-    // 显示用户语音消息占位
-    const newHistory = this.data.chatHistory.concat([
-      { userType: "user", content: "[语音消息]", avatar: userAvatar }
-    ]);
-    this.setData({
-      chatHistory: newHistory,
-      toView: "msg" + (newHistory.length - 1),
-      loading: true
-    });
+// 新增：调用云函数发送语音消息（优化：增加异常捕获）
+sendVoiceMessage(fileID) { 
+  const userAvatar = "/pages/chatAI/images/user.png";
+  const aiAvatar = "/pages/chatAI/images/ai.png";
 
-    wx.cloud.callFunction({
-      name: "chatAI",
-      data: { audioFile: fileID },
-      success: (res) => {
-        console.log("AI 语音返回:", res);
-        if (res.result && res.result.code === 200) {
-          const aiReply = res.result.data;
-          const updatedHistory = this.data.chatHistory.concat([
-            { userType: "ai", content: aiReply, avatar: aiAvatar }
-          ]);
-          this.setData({
-            chatHistory: updatedHistory,
-            toView: "msg" + (updatedHistory.length - 1),
-            loading: false
-          });
-        } else {
-          console.error("AI 语音解析失败:", res.result);
-          wx.showToast({ title: "语音解析失败", icon: "none" });
+  if (this.data.showWelcomeCards) this.setData({ showWelcomeCards: false });
+  if (this.data.exampleQuestions) this.setData({ exampleQuestions: false });
+
+  const newHistory = this.data.chatHistory.concat([
+    { userType: "user", content: "[语音消息]", avatar: userAvatar }
+  ]);
+  this.setData({
+    chatHistory: newHistory,
+    toView: "msg" + (newHistory.length - 1),
+    loading: true
+  });
+  
+  // 调用云函数获取 AI 语音回复
+  wx.cloud.callFunction({
+    name: "chatAI",
+    data: {
+      audioFile: fileID,
+      previousAudioId: this.data.previousAudioId || null
+    },
+    success: (res) => {
+      console.log("AI 语音返回:", res);
+      
+      // 只有在结果有效时才更新 previousAudioId
+      if (res.result && res.result.audioId) {
+        this.setData({ previousAudioId: res.result.audioId });
+      }
+
+      if (res.result && res.result.code === 200 && res.result.audioBase64) {
+        const base64Audio = res.result.audioBase64;
+        const aiText = res.result.text || "[AI 无回复文本]";
+
+        if (!base64Audio || base64Audio.length < 100) {
+          wx.showToast({ title: "语音内容为空", icon: "none" });
           this.setData({ loading: false });
+          return;
         }
-      },
-      fail: (err) => {
-        console.error("调用 AI 语音失败:", err);
-        wx.showToast({ title: "调用 AI 语音失败", icon: "none" });
+
+        // 先移除之前的事件监听，避免重复绑定
+        innerAudioContext.offPlay();
+        innerAudioContext.offError();
+
+        const arrayBuffer = wx.base64ToArrayBuffer(base64Audio);
+        const fs = wx.getFileSystemManager();
+        const filePath = `${wx.env.USER_DATA_PATH}/temp_audio.mp3`;
+
+        fs.writeFile({
+          filePath,
+          data: arrayBuffer,
+          encoding: 'binary',
+          success: () => {
+            innerAudioContext.src = filePath;
+            innerAudioContext.play();
+          },
+          fail: (err) => {
+            console.error("写文件失败:", err);
+            wx.showToast({ title: "语音播放失败", icon: "none" });
+          }
+        });
+
+        innerAudioContext.onPlay(() => {
+          console.log("AI 回复播放中...");
+        });
+        innerAudioContext.onError((res) => {
+          console.error("播放错误:", res.errMsg);
+        });
+
+        const updatedHistory = this.data.chatHistory.concat([
+          { userType: "ai", content: aiText, avatar: aiAvatar }
+        ]);
+        
+        this.setData({
+          chatHistory: updatedHistory,
+          toView: "msg" + (updatedHistory.length - 1),
+          loading: false
+        });
+      } else {
+        console.error("AI 语音解析失败:", res.result);
+        wx.showToast({ title: "语音解析失败", icon: "none" });
         this.setData({ loading: false });
       }
-    });
-  }
+    },
+    fail: (err) => {
+      console.error("调用 AI 语音失败:", err);
+      wx.showToast({ title: "调用 AI 语音失败", icon: "none" });
+      this.setData({ loading: false });
+    }
+  });
+}
 });
