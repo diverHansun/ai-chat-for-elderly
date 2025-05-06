@@ -1,6 +1,10 @@
 // app.js
 App({
   onLaunch() {
+    wx.cloud.init({
+      env: 'cloud1-3g7wugarf23c0db3', // 例如 'cloud1-xxxx'
+      traceUser: true
+    })
     console.log("App Launch - 小程序初始化");
     // 在这里可以做一些全局初始化操作
     this.doSomeInitialization();

@@ -74,6 +74,71 @@
   opacity: 0.8; /* 点击态简单处理 */
 }
 
+/*用户注册*/
+.dialog-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.dialog-box {
+  background: white;
+  border-radius: 20rpx;
+  padding: 40rpx 30rpx;
+  width: 600rpx;
+  text-align: center;
+}
+
+.dialog-title {
+  font-weight: bold;
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+
+.dialog-text {
+  font-size: 28rpx;
+  color: #555;
+  margin-bottom: 40rpx;
+}
+
+.dialog-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30rpx;
+}
+
+.btn-cancel {
+  background: #f5f5f5;
+  color: #333;
+  padding: 20rpx 50rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.btn-confirm {
+  background: #07c160;
+  color: white;
+  padding: 20rpx 50rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+}
+
+.dialog-policy {
+  font-size: 24rpx;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /**
  * 底部说明/版权信息
  */

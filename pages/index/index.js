@@ -4,7 +4,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    welcomeMsg: "欢迎来到AI聊天小程序！"
+    welcomeMsg: "欢迎来到AI聊天小程序！",
+    userInfo: null,
+    showAuthDialog: true,
+    appName: '乐龄云助手',
+    agreed: false
   },
 
   /**
@@ -85,5 +89,49 @@ Page({
         console.error("跳转到 chatAI 页面失败：", err);
       }
     });
+  },
+  
+  onCheckAgree(e) {
+    this.setData({ agreed: e.detail.value.length > 0 })
+  },
+
+  onReject() {
+    wx.showToast({ title: '授权才能使用服务', icon: 'none' })
+  },
+
+  getUserProfile() {
+    if (!this.data.agreed) {
+      wx.showToast({ title: '请先勾选隐私政策', icon: 'none' })
+      return
+    }
+  
+    wx.getUserProfile({
+      desc: '用于完善用户信息',
+      success: res => {
+        const userInfo = res.userInfo
+        this.setData({ userInfo, showAuthDialog: false })
+  
+        wx.cloud.callFunction({
+          name: 'registerUser',
+          data: {
+            nickname: userInfo.nickName,
+            avatarUrl: userInfo.avatarUrl,
+            role: 'elder'
+          },
+          success: res => {
+            console.log('注册成功:', res.result)
+            wx.showToast({ title: '欢迎使用', icon: 'success' })
+          },
+          fail: err => {
+            console.error('注册失败:', err)
+            wx.showToast({ title: '注册失败', icon: 'none' })
+          }
+        })
+      },
+      fail: err => {
+        console.error('获取用户信息失败:', err)
+        wx.showToast({ title: '授权失败', icon: 'none' })
+      }
+    })
   }
 });

@@ -7,5 +7,6 @@
     "navigationBarTitleText": "智能AI聊天助手",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black"
-  }
+  },
+  "lazyCodeLoading": "requiredComponents"
 }

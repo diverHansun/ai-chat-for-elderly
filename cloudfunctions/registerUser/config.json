@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "read": ["users"],
+    "write": ["users"]
+  },
+  "triggers": []
+}
