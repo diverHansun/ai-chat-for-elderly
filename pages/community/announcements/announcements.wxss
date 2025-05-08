@@ -1,0 +1,172 @@
+/* 基础布局 */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #f6f7f9;
+}
+
+/* 渐变 Header */
+.header {
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 36rpx;
+  font-weight: 600;
+  background: linear-gradient(90deg,#06c160,#06ad8a);
+  border-bottom-left-radius: 24rpx;
+  border-bottom-right-radius: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0,0,0,.1);
+}
+
+/* 列表区域 */
+.list-box {
+  flex: 1;
+  padding: 20rpx 24rpx 140rpx;
+}
+
+/* 公告卡片 */
+.announcement-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 26rpx 30rpx;
+  margin-bottom: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0,0,0,.05);
+  animation: fadeIn .35s ease;
+}
+.announcement-card .title {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 12rpx;
+  color: #333;
+}
+.announcement-card .content {
+  font-size: 28rpx;
+  color: #555;
+  line-height: 1.6;
+}
+.announcement-card .time {
+  text-align: right;
+  margin-top: 16rpx;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.del-btn {
+  position: absolute;
+  right: 30rpx;
+  top: 20rpx;
+  font-size: 26rpx;
+  color: #f56c6c;
+  background: transparent;
+  border: 1rpx solid #f56c6c;
+  padding: 4rpx 12rpx;
+  border-radius: 8rpx;
+}
+/* 空态 */
+.empty-wrap {
+  padding-top: 120rpx;
+  text-align: center;
+  color: #9c9c9c;
+}
+.empty-img {
+  width: 240rpx;
+  height: 240rpx;
+  opacity: .6;
+}
+.empty-text {
+  margin-top: 20rpx;
+  font-size: 30rpx;
+  text-align: center;   /* 文字水平居中 */
+  width: 100%;          /* 占满一行，配合 text-align 生效 */
+  display: block;       /* 让 <text> 像块级元素，占整行 */
+}
+
+
+/* 悬浮发布按钮 */
+.fab {
+  position: fixed;
+  right: 48rpx;
+  bottom: 120rpx;
+  width: 110rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  text-align: center;
+  font-size: 64rpx;
+  background: #06c160;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 12rpx 28rpx rgba(6,193,96,.35);
+}
+
+/* 发布弹窗 */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+}
+.modal-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.55);
+}
+.modal-content {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 80%;
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+}
+.modal-input {
+  width: 100%;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #eee;
+  padding-bottom: 16rpx;
+}
+.modal-textarea {
+  width: 100%;
+  height: 220rpx;
+  margin-top: 28rpx;
+  font-size: 28rpx;
+  background: #f7f8fa;
+  border-radius: 16rpx;
+  padding: 16rpx;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 28rpx;
+}
+.btn-cancel,
+.btn-confirm {
+  padding: 18rpx 44rpx;
+  border-radius: 999px;
+  font-size: 28rpx;
+}
+.btn-cancel {
+  background: #f2f3f5;
+  color: #666;
+  margin-right: 20rpx;
+}
+.btn-confirm {
+  background: #06c160;
+  color: #fff;
+}
+
+/* 动画 */
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(12rpx)}
+  to{opacity:1;transform:translateY(0)}
+}
+.animate-pop{
+  animation:pop .3s ease-out;
+}
+@keyframes pop{
+  0%{transform:translate(-50%,-50%) scale(.8);opacity:0}
+  100%{transform:translate(-50%,-50%) scale(1);opacity:1}
+}

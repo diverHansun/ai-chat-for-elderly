@@ -1,0 +1,40 @@
+<view class="container">
+  <!-- 顶部标题 -->
+  <view class="header">
+    <text>社区公告</text>
+  </view>
+
+  <!-- 公告列表 / 空态 -->
+  <scroll-view scroll-y class="list-box">
+    <!-- 空列表提示 -->
+    <view wx:if="{{!announcements.length}}" class="empty-wrap">
+      <text class="empty-text">暂时没有公告哦~</text>
+    </view>
+
+    <!-- 公告卡片 -->
+    <block wx:for="{{announcements}}" wx:key="index">
+      <view class="announcement-card">
+        <view class="title">{{item.title}}</view>
+        <view class="content">{{item.content}}</view>
+        <view class="time">{{item.timeStr}}</view>
+      </view>
+      <button wx:if="{{role === 'staff'}}" class="del-btn" data-id="{{item._id}}" bindtap="onDelete">删除</button>
+    </block>
+  </scroll-view>
+
+  <!-- 悬浮发布按钮（管理员可见） -->
+  <button class="fab" wx:if="{{role === 'staff'}}" bindtap="openPublishModal">＋</button>
+
+  <!-- 发布弹窗 -->
+  <view class="modal" wx:if="{{showPublishModal}}">
+    <view class="modal-mask" bindtap="closePublishModal" />
+    <view class="modal-content animate-pop">
+      <input class="modal-input" placeholder="请输入公告标题" value="{{title}}" bindinput="onTitleInput" />
+      <textarea class="modal-textarea" placeholder="请输入公告内容" value="{{content}}" maxlength="200" bindinput="onContentInput" />
+      <view class="modal-actions">
+        <button class="btn-cancel" bindtap="closePublishModal">取消</button>
+        <button class="btn-confirm" bindtap="submitAnnouncement">发布</button>
+      </view>
+    </view>
+  </view>
+</view>
