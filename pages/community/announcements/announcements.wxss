@@ -27,44 +27,67 @@
   padding: 20rpx 24rpx 140rpx;
 }
 
-/* 公告卡片 */
+/* 卡片整体 */
 .announcement-card {
-  background: #fff;
+  background-color: #fff;
   border-radius: 20rpx;
   padding: 26rpx 30rpx;
   margin-bottom: 24rpx;
-  box-shadow: 0 8rpx 24rpx rgba(0,0,0,.05);
-  animation: fadeIn .35s ease;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.35s ease;
 }
-.announcement-card .title {
-  font-size: 30rpx;
+
+/* 标题 */
+.title {
+  font-size: 32rpx;
   font-weight: 600;
-  margin-bottom: 12rpx;
   color: #333;
+  margin-bottom: 12rpx;
 }
-.announcement-card .content {
+
+/* 正文 */
+.content {
   font-size: 28rpx;
   color: #555;
   line-height: 1.6;
+  white-space: pre-wrap;   /* 保留换行 */
 }
-.announcement-card .time {
-  text-align: right;
-  margin-top: 16rpx;
+
+/* 底部横向布局 */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20rpx;
+}
+
+/* 时间文本 */
+.time {
   font-size: 24rpx;
   color: #999;
 }
 
+/* 删除按钮 */
 .del-btn {
-  position: absolute;
-  right: 30rpx;
-  top: 20rpx;
   font-size: 26rpx;
   color: #f56c6c;
-  background: transparent;
+  background-color: transparent;
   border: 1rpx solid #f56c6c;
-  padding: 4rpx 12rpx;
+  padding: 4rpx 20rpx;
   border-radius: 8rpx;
+  transition: background-color 0.2s;
 }
+
+.del-btn:active {
+  background-color: rgba(245, 108, 108, 0.1);
+}
+
+/* 卡片淡入动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20rpx); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
 /* 空态 */
 .empty-wrap {
   padding-top: 120rpx;

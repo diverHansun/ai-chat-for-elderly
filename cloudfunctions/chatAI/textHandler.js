@@ -49,3 +49,11 @@ async function getAIResponse(userMessage, conversationHistory = []) {
       return "AI 服务暂时不可用，请稍后再试";
     }
   };
+  
+async function handleTextMessage(message, history = []) {
+  const markdown = await getAIResponse(message, history);
+  const html = marked(markdown); // 转成 HTML，如果你只是想返回 Markdown 可以不调用 marked
+  return html;
+}
+
+module.exports = { handleTextMessage };

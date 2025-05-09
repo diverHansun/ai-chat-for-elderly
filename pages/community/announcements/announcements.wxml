@@ -12,14 +12,29 @@
     </view>
 
     <!-- 公告卡片 -->
-    <block wx:for="{{announcements}}" wx:key="index">
+
+    <block wx:for="{{announcements}}" wx:key="_id" wx:for-item="ann">
       <view class="announcement-card">
-        <view class="title">{{item.title}}</view>
-        <view class="content">{{item.content}}</view>
-        <view class="time">{{item.timeStr}}</view>
+        <!-- 标题 -->
+        <view class="title">{{ann.title}}</view>
+
+        <!-- 正文 -->
+        <view class="content">{{ann.content}}</view>
+
+        <!-- 底部：时间 + （可选）删除按钮 -->
+        <view class="footer">
+          <text class="time">{{ann.timeStr}}</text>
+
+          <!-- 仅 staff 显示删除 -->
+          <button wx:if="{{role === 'staff'}}" class="del-btn" data-id="{{ann._id}}" bindtap="onDelete">
+            删除
+          </button>
+        </view>
       </view>
-      <button wx:if="{{role === 'staff'}}" class="del-btn" data-id="{{item._id}}" bindtap="onDelete">删除</button>
     </block>
+
+
+
   </scroll-view>
 
   <!-- 悬浮发布按钮（管理员可见） -->

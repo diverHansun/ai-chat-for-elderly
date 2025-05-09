@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",     
-    "pages/chatAI/chatAI"    
+    "pages/chatAI/chatAI"  ,
+    "pages/community/announcements/announcements",
+    "pages/community/services/services"
   ],
   "window": {
     "navigationBarTitleText": "智能AI聊天助手",

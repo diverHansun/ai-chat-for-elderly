@@ -8,7 +8,6 @@ Page({
   },
 
   onLoad() {
-    this.fetchAnnouncements()
     this.getUserRole()
   },
 
@@ -22,6 +21,7 @@ Page({
       const role = res.result.data.role
       this.setData({ role }, () => {
         console.log('已写入 role =', this.data.role) // ➜ ②
+        this.fetchAnnouncements();
       })
     } catch (e) {
       console.error('获取身份失败', e)

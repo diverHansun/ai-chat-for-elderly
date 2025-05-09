@@ -93,4 +93,9 @@ async function processAudio(audioFileID, previousAudioIdFromClient) {
     console.error("语音处理失败:", error.response?.data || error);
     return { code: 500, message: "语音处理失败", error: error.message };
   }
+};
+async function handleVoice(audioFile, previousAudioId) {
+  return await processAudio(audioFile, previousAudioId);
 }
+
+module.exports = { handleVoice };

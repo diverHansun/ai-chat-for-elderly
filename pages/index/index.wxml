@@ -1,7 +1,7 @@
 <!-- index.wxml -->
 <view class="page">
   <!-- 页面标题 -->
-  <view class="title">智能AI聊天助手</view>
+  <view class="title">乐龄云助手</view>
 
   <!-- 卡片介绍区域 -->
   <view class="card">
@@ -12,8 +12,44 @@
       探索人工智能对话的无限可能，体验便捷健康助手带来的全新服务！
     </view>
     <!-- 进入 AI 对话按钮 -->
-    <button class="primary-btn" bindtap="goToChat" style="position: relative; left: 0rpx; top: 2rpx">进入 AI 对话</button>
+    <button class="btn btn-solid" bindtap="goToChat">进入 AI 对话</button>
   </view>
+
+  <!-- 社区服务卡片 -->
+  <view class="card community-card">
+    <view class="card-title">社区服务</view>
+    <view class="card-desc">
+      社区公告发布与服务预约，一键连接社区资源
+    </view>
+    <view class="button-group">
+      <button class="btn btn-solid" bindtap="goToAnnouncements">
+        查看/发布公告
+      </button>
+      <button class="btn btn-outline" bindtap="goToService">
+        预约服务
+      </button>
+    </view>
+  </view>
+
+  <!-- 便捷设施导航卡片 -->
+  <view class="card facility-card">
+    <view class="card-title">便捷设施导航</view>
+    <view class="card-desc">
+      一键查询社区设施位置并获取最佳路径规划
+    </view>
+    <view class="button-group">
+      <button class="btn btn-solid" bindtap="goToFacilitySearch">
+        查询设施
+      </button>
+      <button class="btn btn-outline" bindtap="goToRouteNavigation">
+        路径导航
+      </button>
+    </view>
+  </view>
+
+
+
+
 
   <!-- 授权弹窗 -->
   <view wx:if="{{showAuthDialog}}" class="dialog-wrapper">
@@ -31,12 +67,13 @@
       <view class="dialog-policy">
         <checkbox-group bindchange="onCheckAgree">
           <label>
-            <checkbox value="agree" /> 我已阅读并同意《隐私政策》</label>
+            <checkbox value="agree" /> 我已阅读并同意《隐私政策》
+          </label>
         </checkbox-group>
       </view>
     </view>
   </view>
 
   <!-- 底部版权信息 -->
-  <view class="footer-text">© 2025 你的小程序名称</view>
+  <view class="footer-text">© 2025 乐龄云助手</view>
 </view>

@@ -90,7 +90,32 @@ Page({
       }
     });
   },
-  
+
+  goToAnnouncements() {
+    wx.navigateTo({
+      url: '/pages/community/announcements/announcements',
+      success: (res) => {
+        console.log("成功跳转到 announcements 页面");
+      },
+      fail: (err) => {
+        console.error("跳转到 announcements 页面失败：", err);
+      }
+    });
+  },
+goToService(){
+  wx.navigateTo({
+    url: '/pages/community/services/services',
+    success: (res) => {
+      console.log("成功跳转到 services 页面");
+    },
+    fail: (err) => {
+      console.error("跳转到 services 页面失败：", err);
+    }
+  });
+},
+
+
+
   onCheckAgree(e) {
     this.setData({ agreed: e.detail.value.length > 0 })
   },
@@ -104,13 +129,13 @@ Page({
       wx.showToast({ title: '请先勾选隐私政策', icon: 'none' })
       return
     }
-  
+
     wx.getUserProfile({
       desc: '用于完善用户信息',
       success: res => {
         const userInfo = res.userInfo
         this.setData({ userInfo, showAuthDialog: false })
-  
+
         wx.cloud.callFunction({
           name: 'registerUser',
           data: {
